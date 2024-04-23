@@ -1,0 +1,23 @@
+{
+  "name": "@lucas-util/lucas-util",
+  "version": "1.0.0",
+  "description": "private sql init utils",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "node ./idex.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swings134man/npm-deploy-test.git"
+  },
+  "keywords": [
+    "lucas"
+  ],
+  "author": "lucas kang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swings134man/npm-deploy-test/issues"
+  },
+  "homepage": "https://github.com/swings134man/npm-deploy-test#readme"
+}
