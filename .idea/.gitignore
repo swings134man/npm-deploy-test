@@ -8,3 +8,10 @@
 /dataSources.local.xml
 # GitHub Copilot persisted chat sessions
 /copilot/chatSessions
+
+misc.xml
+modules.xml
+vcs.xml
+workspace.xml
+npm-deploy-test.iml
+git_toolbox_prj.xml
