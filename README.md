@@ -24,6 +24,7 @@ This Is A Test Repository For JS Library Publish To NPM
 
 ** ```npm ls -g --depth=0``` => local global package list
 ** npm uninstall -g {OrganizationName}/{PackageName} => uninstall global package
+** npm repo delete => on 72 hours delete the package => npm unpublish {pacakgeName} -f
 
 ### Deploy
 1. ```npm login```
@@ -37,3 +38,10 @@ This Is A Test Repository For JS Library Publish To NPM
 
 1. ``npm install @{OrganizationName}/{PackageName}``
 -> you can add options 
+
+---
+### TODO 
+
+1. NPM Version Limit >=18
+2. Using Command Line -> lucas-util init
+3. 
