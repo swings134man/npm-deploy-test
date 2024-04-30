@@ -44,4 +44,8 @@ This Is A Test Repository For JS Library Publish To NPM
 
 1. NPM Version Limit >=18
 2. Using Command Line -> lucas-util init
-3. 
+
+
+--- 
+npm i g codegenie <br/>
+codegenie init
