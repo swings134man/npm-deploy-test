@@ -22,8 +22,8 @@ This Is A Test Repository For JS Library Publish To NPM
 4. ```node index.js``` Scipt Run
 5. Check The Console
 
-** ```npm ls -g --depth=0``` => local global package list
-** npm uninstall -g {OrganizationName}/{PackageName} => uninstall global package
+** ```npm ls -g --depth=0``` => local global package list <br/>
+** ```npm uninstall -g {OrganizationName}/{PackageName}``` => uninstall global package
 ** npm repo delete => on 72 hours delete the package => npm unpublish {pacakgeName} -f
 
 ### Deploy
