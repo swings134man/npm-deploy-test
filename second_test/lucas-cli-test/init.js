@@ -27,6 +27,8 @@ const path = require('path');
         console.log('make "genie-config" Directory!!');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////     CONF GEN     /////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
         // genie.conf.js file code write
         const genieConfCode = `
 const config = {
@@ -34,7 +36,6 @@ const config = {
     version: '1.0.0'
 };`
 ;
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // genie.conf.js make file path
         const genieConfFile = path.join(genieConfDir, 'genie.conf.js');
@@ -45,21 +46,62 @@ const config = {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-        // genie.maker.js File Generated
-        const genieMakerCode = `
-const config = {
-    appName: 'genie.maker.js',
-    version: '1.0.0'
-};`
-;
+//////////////////////////////////////      SQL GEN     /////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // genie.conf.js make file path
-        const genieMakerFile = path.join(genieConfDir, 'genie.maker.js');
+        // 1. SQL Dir GEN
+        const sqlDirPath = path.join(genieConfDir, 'genie-sql');
 
-        // genie.conf.js File Generated
-        fs.writeFileSync(genieMakerFile, genieMakerCode);
-        console.log('make "genie.maker.js" file!!');
+            const mysqlDirPath = path.join(sqlDirPath, 'mysql');
+            const oracleDirPath = path.join(sqlDirPath, 'oracle');
+            const postgreDirPath = path.join(sqlDirPath, 'postgresql');
+            const sqlServerDirPath = path.join(sqlDirPath, 'sqlserver');
+
+
+        // 2. SQL Test Table init Gen
+        const mysqlQuery = `
+            CREATE TABLE nv_test_table (
+                id INT NOT NULL AUTO_INCREMENT,
+                name VARCHAR(100) NOT NULL,
+                PRIMARY KEY (id)
+            );
+        `;
+
+        const oracleQuery = `
+            CREATE TABLE nv_test_table (
+                id NUMBER NOT NULL,
+                name VARCHAR2(100) NOT NULL,
+                PRIMARY KEY (id)
+            );
+        `;
+
+        const postgreQuery = `
+            CREATE TABLE nv_test_table (
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(100) NOT NULL
+            );
+        `;
+
+        const sqlServerQuery = `
+            CREATE TABLE nv_test_table (
+                id INT PRIMARY KEY,
+                name NVARCHAR(100) NOT NULL
+            );
+        `;
+
+        // 3. SQL File Generate
+        const mysqlFilePath = path.join(mysqlDirPath, '01.sample.sql');
+        const oracleFilePath = path.join(oracleDirPath, '01.sample.sql');
+        const postgreFilePath = path.join(postgreDirPath, '01.sample.sql');
+        const sqlServerFilePath = path.join(sqlServerDirPath, '01.sample.sql');
+
+        // 4. SQL File Write
+        fs.writeFileSync(mysqlFilePath, mysqlDirPath);
+        fs.writeFileSync(oracleFilePath, oracleQuery);
+        fs.writeFileSync(postgreFilePath, postgreQuery);
+        fs.writeFileSync(sqlServerFilePath, sqlServerQuery);
+
+        console.log('make "genie-sql" Directory and Sample Files!');
 
     } else {
         console.log('genie-config directory already exists.');
