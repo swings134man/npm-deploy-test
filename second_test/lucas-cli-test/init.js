@@ -30,7 +30,7 @@ const path = require('path');
         // genie.conf.js file code write
         const genieConfCode = `
 const config = {
-    appName: genie.conf.js',
+    appName: 'genie.conf.js',
     version: '1.0.0'
 };`
 ;
@@ -48,7 +48,7 @@ const config = {
         // genie.maker.js File Generated
         const genieMakerCode = `
 const config = {
-    appName: genie.maker.js',
+    appName: 'genie.maker.js',
     version: '1.0.0'
 };`
 ;
