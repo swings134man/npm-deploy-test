@@ -13,6 +13,11 @@
   "keywords": [
     "lucas-cli-test"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swings134man/npm-deploy-test.git"
+  },
+  "homepage": "https://github.com/swings134man/npm-deploy-test#readme",
   "author": "swings134@gmail.com",
   "license": "ISC"
 }

@@ -7,7 +7,7 @@ const path = require('path');
     console.log('[lucas-cli-test] RUN.');
 
     const opt = process.argv[2];
-    console.log("process.argv[2] = OPTIONS : " + process.argv[2]); // Options
+    console.log("OPTIONS : " + process.argv[2]); // Options
 
     if (opt !== 'init' || opt === '' || opt === null) {
         console.log("Error: not required Command");
