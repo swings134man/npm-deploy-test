@@ -39,9 +39,28 @@ const config = {
         // genie.conf.js make file path
         const genieConfFile = path.join(genieConfDir, 'genie.conf.js');
 
-        // genie.conf.js 파일을 생성합니다.
+        // genie.conf.js File Generated
         fs.writeFileSync(genieConfFile, genieConfCode);
         console.log('make "genie.conf.js" file!!');
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+        // genie.maker.js File Generated
+        const genieMakerCode = `
+const config = {
+    appName: genie.maker.js',
+    version: '1.0.0'
+};`
+;
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // genie.conf.js make file path
+        const genieMakerFile = path.join(genieConfDir, 'genie.maker.js');
+
+        // genie.conf.js File Generated
+        fs.writeFileSync(genieMakerFile, genieMakerCode);
+        console.log('make "genie.maker.js" file!!');
+
     } else {
         console.log('genie-config directory already exists.');
         return;
