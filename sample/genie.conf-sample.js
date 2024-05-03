@@ -5,7 +5,7 @@
  * @param {*} _ lodash 입니다.
  * @returns baseConfig, globalEngines, moduleCallback 세가지를 반환합니다.
  */
-module.exports.getConfig = (userCfg, path, _,) => {
+module.exports.getConfig = (userCfg, path, _, crypto) => {
   /**
    * 참고 
    * userCfg 는 다음과 같은 구조로 되어 있습니다.
@@ -92,7 +92,7 @@ module.exports.getConfig = (userCfg, path, _,) => {
   // genie-sql 설정 디렉토리 파일 카피
   const engineGenieSqlCopy = {
     engine: 'CopyAndReplaceContent',
-    path : path.join('genie-sql', maker.getDbName(userCfg)),
+    path : path.join('genie-sql', 'DB Name 작성'),
     to : 'genie-sql',
     recursive: true,
     excludes: [],
