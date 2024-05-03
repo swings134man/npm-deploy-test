@@ -51,11 +51,17 @@ const config = {
 
         // 1. SQL Dir GEN
         const sqlDirPath = path.join(genieConfDir, 'genie-sql');
+        fs.mkdirSync(sqlDirPath);
 
             const mysqlDirPath = path.join(sqlDirPath, 'mysql');
             const oracleDirPath = path.join(sqlDirPath, 'oracle');
             const postgreDirPath = path.join(sqlDirPath, 'postgresql');
             const sqlServerDirPath = path.join(sqlDirPath, 'sqlserver');
+
+        fs.mkdirSync(mysqlDirPath);
+        fs.mkdirSync(oracleDirPath);
+        fs.mkdirSync(postgreDirPath);
+        fs.mkdirSync(sqlServerDirPath);
 
 
         // 2. SQL Test Table init Gen
@@ -96,7 +102,7 @@ const config = {
         const sqlServerFilePath = path.join(sqlServerDirPath, '01.sample.sql');
 
         // 4. SQL File Write
-        fs.writeFileSync(mysqlFilePath, mysqlDirPath);
+        fs.writeFileSync(mysqlFilePath, mysqlQuery);
         fs.writeFileSync(oracleFilePath, oracleQuery);
         fs.writeFileSync(postgreFilePath, postgreQuery);
         fs.writeFileSync(sqlServerFilePath, sqlServerQuery);
