@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: 16.x
 
+      - name: Change to correct directory
+        run: cd ./second_test/lucas-cli-test/
+
       - name: Install npm
         run: npm install
 
