@@ -14,20 +14,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
 
-      - name: Change to correct directory
-        run: cd ./second_test/lucas-cli-test/
-
       - name: Install npm
-        run: npm install
+        run: |
+          cd ./second_test/lucas-cli-test/
+          npm install
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd ./second_test/lucas-cli-test/
+          npm ci
 
       - name: Npm Version Patch
         run: |
@@ -35,6 +36,8 @@ jobs:
           npm version patch
 
       - name: Publish to npm
-        run: npm publish ./second_test/lucas-cli-test/ --access public
+        run: |
+          cd ./second_test/lucas-cli-test/
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
