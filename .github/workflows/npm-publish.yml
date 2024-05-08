@@ -31,21 +31,16 @@ jobs:
           cd ./second_test/lucas-cli-test/
           npm ci
 
-      - name: Npm Version Patch
-        run: |
-          cd ./second_test/lucas-cli-test/
-          npm version patch
-          git config --local user.email "swings134@gmail.com"
-          git config --local user.name "swings134man"
-          git commit -am "Bump version"
-          git push
-        env:
-          GITHUB_TOKEN: ${{secrets.GIT_AT}}
+#      - name: Npm Version Patch
+#        run: |
+#          cd ./second_test/lucas-cli-test/
+#          npm version patch
 
 
       - name: Publish to npm
         run: |
           cd ./second_test/lucas-cli-test/
+          npm version patch
           npm publish --access public --registry https://registry.npmjs.org/
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUB_TOKEN}}
