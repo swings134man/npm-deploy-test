@@ -90,8 +90,8 @@ module.exports.getConfig = (userCfg, path, _, crypto) => {
     excludes: [],
     replaces: [
       {from: 'com.my.sample', to: userCfg.basePackage},
-      {from: 'sample-parent', to: \`${userCfg.id}-parent\`},
-      {from: 'sample-core', to: \`${userCfg.id}-core\`},
+      {from: 'sample-parent', to: ''}, //\${userCfg.id}-parent 로 변경
+      {from: 'sample-core', to: ''}, //\${userCfg.id}-core
       {from: 'sample', to: userCfg.id},
       {from: 'org.mariadb.jdbc:mariadb-java-client', to: ''}, // DB Driver 설정(Sample)
       {from: \`DB_DRIVER: '1.0.0'\`, to: \`DB_DRIVER: ''\`},
@@ -115,10 +115,10 @@ module.exports.getConfig = (userCfg, path, _, crypto) => {
     excludes: [],
     replaces: [
       {from: 'com.my.sample', to: userCfg.basePackage},
-      {from: 'sampledb.', to: userCfg.jdbc.schemaName ? \`${userCfg.jdbc.schemaName}.\` : ''},
-      {from: 'sampledb', to: userCfg.jdbc.schemaName ? \`${userCfg.jdbc.schemaName}\` : ''},
+      {from: 'sampledb.', to: userCfg.jdbc.schemaName ? '' : ''}, //\${userCfg.jdbc.schemaName}
+      {from: 'sampledb', to: userCfg.jdbc.schemaName ? '' : ''}, //\${userCfg.jdbc.schemaName}
       {from: 'tb_', to: userCfg.jdbc.tablePrefix},
-      {from: '"sample"', to: \`"${userCfg.id}"\`},
+      {from: '"sample"', to: ''}, //"\${userCfg.id}"
       {from: 'sample', to: userCfg.idVar},
       {from: 'sample', to: userCfg.idName}
     ]
@@ -178,19 +178,17 @@ module.exports.getConfig = (userCfg, path, _, crypto) => {
       recursive: true, // recursive 가 false 이면, 디렉토리는 제외
       excludes: [],
       replaces: [
-        {from: \`com.my.sample.${md.type}\`, to: \`${userCfg.basePackage}.${md.subPackage}\`},
+        {from: \`com.my.sample.\${md.type}\`, to: \`\${userCfg.basePackage}.\${md.subPackage}\`},
         {from: 'com.my.sample', to: userCfg.basePackage},
         {from: 'sampledb', to: userCfg.catalogSchema},
-        {from: 'sample-parent', to: \`${userCfg.id}-parent\`},
-        {from: 'sample-core', to: \`${userCfg.id}-core\`},
-        {from: \`sample-${md.type}\`, to: \`${userCfg.id}-${md.id}\`},
-        {from: \`${typeName}Properties\`, to: \`${moduleName}Properties\`},
-        {from: \`${md.type}Properties\`, to: \`${moduleCamel}Properties\`},
-        {from: '"sample"', to: \`"${userCfg.id}"\`},
-        {from: '@ComponentScan({"com.my"})', to: \`@ComponentScan({"com.my", "${userCfg.basePackage}"})\`},
+        {from: 'sample-core', to: \`\${userCfg.id}-core\`},
+        {from: \`sample-\${md.type}\`, to: \`\${userCfg.id}-\${md.id}\`},
+        {from: \`\${md.type}Properties\`, to: \`\${moduleCamel}Properties\`},
+        {from: '"sample"', to: \`"\${userCfg.id}"\`},
+        {from: '@ComponentScan({"com.my"})', to: \`@ComponentScan({"com.my", "\${userCfg.basePackage}"})\`},
       ],
       renames: [
-        {from: \`sample${typeName}\`, to: \`${userCfg.idName}${moduleName}\`},
+        {from: \`sample\${typeName}\`, to: \`\${userCfg.idName}\${moduleName}\`},
       ]
     }
     engines.push(moduleEngine);
