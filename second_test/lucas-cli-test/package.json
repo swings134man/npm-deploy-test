@@ -1,7 +1,7 @@
 {
   "name": "lucas-cli-test",
   "version": "1.1.5",
-  "description": "test for deploy",
+  "description": "test for deploy Make dir,files",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./init.js"

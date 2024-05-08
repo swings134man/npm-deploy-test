@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+// Main Run Script file
 const fs = require('fs');
 const path = require('path');
 
