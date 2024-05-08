@@ -3,9 +3,11 @@
 
 name: Publish to npm
 
+# This workFlow is Trigger To Publish NPM Package
 on:
   workflow_dispatch:
 
+# Auto publish on push to main
 #  push:
 #    branches:
 #      - main
