@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Main Run Script file
+// Main Run Script file: If you Want to Add File or Directory, You can Add Here.
 const fs = require('fs');
 const path = require('path');
 
