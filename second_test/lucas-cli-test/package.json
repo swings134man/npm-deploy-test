@@ -1,6 +1,6 @@
 {
   "name": "lucas-cli-test",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "test for deploy Make dir,files",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -8,7 +8,8 @@
   },
   "main": "init.js",
   "bin": {
-    "lucas-cli-test": "./init.js"
+    "lucas-cli-test": "./init.js",
+    "clitest": "./init.js"
   },
   "keywords": [
     "lucas-cli-test"
