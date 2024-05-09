@@ -6,6 +6,12 @@ name: Publish to npm
 # This workFlow is Trigger To Publish NPM Package
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version Update Type'
+        required: true
+        default: 'patch'
+        options: ['major', 'minor', 'patch']
 
 # Auto publish on push to main
 #  push:
@@ -38,7 +44,7 @@ jobs:
       - name: Npm Version Patch
         run: |
           cd ./second_test/lucas-cli-test/
-          npm version patch
+          npm version ${{ github.event.inputs.version }}
 
       - name: Git Commit
         run: |
