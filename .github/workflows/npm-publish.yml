@@ -56,7 +56,7 @@ jobs:
           cd ./second_test/lucas-cli-test/
           npm publish --access public --registry https://registry.npmjs.org/
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_PUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.TOKEN}}
 
 
       - name: git push
