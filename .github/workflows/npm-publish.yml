@@ -47,7 +47,6 @@ jobs:
 
       - name: Git Commit
         run: |
-          git config --global user.email swings134@gmail.com
           git config --global user.name "swings134man"
           git add .
           git commit -m "Bump Version"
