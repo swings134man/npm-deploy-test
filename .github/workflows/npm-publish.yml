@@ -59,3 +59,5 @@ jobs:
 
       - name: git push
         run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_AT }}
