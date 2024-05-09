@@ -40,15 +40,13 @@ jobs:
           cd ./second_test/lucas-cli-test/
           npm version patch
 
-      - name: Git Commit & Push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_AT }}
+      - name: Git Commit
         run: |
           git config --global user.email swings134@gmail.com
           git config --global user.name "github-actions[bot]"
-          git add -A
-          git commit -m "Bump Version"
-          git push https://${GITHUB_TOKEN}@github.com/swings134man/npm-deploy-test.git main
+#          git add .
+#          git commit -m "Bump Version"
+#          git push origin main --tags
           
 
       - name: Publish to npm
@@ -57,3 +55,7 @@ jobs:
           npm publish --access public --registry https://registry.npmjs.org/
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_PUB_TOKEN}}
+
+
+      - name: git push
+        run: git push origin main
