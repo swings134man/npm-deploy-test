@@ -8,10 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version Update Type'
+        description: 'Version type to bump (patch, minor, major)'
         required: true
         default: 'patch'
-        options: ['major', 'minor', 'patch']
 
 # Auto publish on push to main
 #  push:
