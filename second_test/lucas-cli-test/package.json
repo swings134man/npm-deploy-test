@@ -20,5 +20,8 @@
   },
   "homepage": "https://github.com/swings134man/npm-deploy-test#readme",
   "author": "swings134@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^12.0.0"
+  }
 }

@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
 // Main Run Script file: If you Want to Add File or Directory, You can Add Here.
+const { Command } = require('commander');
 const fs = require('fs');
 const path = require('path');
+const { version } = require('./package.json');
+
+const program = new Command();
 
 (() => {
-    console.log('[lucas-cli-test] RUN.');
+    program.action(cmd => console.log('✓ [lucas-cli-test] Running!!'))
+    program.version(version);
 
     const opt = process.argv[2];
     console.log("OPTIONS : " + process.argv[2]); // Options
