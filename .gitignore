@@ -3,3 +3,5 @@
 ./first_test/test-dir/node_modules/**
 
 .idea/**
+
+./second_test/lucas-cli-test/node_modules/**
