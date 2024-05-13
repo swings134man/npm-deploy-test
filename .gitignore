@@ -6,3 +6,4 @@
 
 ./second_test/lucas-cli-test/node_modules/**
 ./second_test/lucas-cli-test/node_modules
+./second_test/lucas-cli-test/package-lock.json
