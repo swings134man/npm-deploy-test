@@ -49,8 +49,9 @@ jobs:
         run: |
           git config --global user.name "swings134man"
           git config --global user.email swings134@gmail.com
-          git add .
-          git commit -m "Bump Version"
+          cd ./second_test/lucas-cli-test/
+          git add package.json
+          git commit -m "NPM Version BUMP"
           
       - name: Publish to npm
         run: |
