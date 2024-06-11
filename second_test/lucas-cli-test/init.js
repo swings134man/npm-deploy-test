@@ -16,7 +16,7 @@ const path = require('path');
     }
 
     const opt2 = process.argv?.[3];
-    if(opt2 !== null || opt2 !== undefined) {console.log("OPTIONS2 : " + opt2); // Options2}
+    if(opt2 !== null || opt2 !== undefined) {console.log("OPTIONS2 : " + opt2)}; // Options2}
 
         // current directory path get
         const currentDir = process.cwd();
