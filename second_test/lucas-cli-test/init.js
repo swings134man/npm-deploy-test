@@ -20,6 +20,9 @@ const program = new Command();
         return;
     }
 
+    const opt2 = process.argv?.[3];
+    console.log("OPTIONS : " + opt2); // Options
+
     // current directory path get
     const currentDir = process.cwd();
 
