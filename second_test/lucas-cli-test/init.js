@@ -1,19 +1,14 @@
 #!/usr/bin/env node
 
 // Main Run Script file: If you Want to Add File or Directory, You can Add Here.
-const { Command } = require('commander');
 const fs = require('fs');
 const path = require('path');
-const { version } = require('./package.json');
-
-const program = new Command();
 
 (() => {
-    program.action(cmd => console.log('✓ [lucas-cli-test] Running!!'))
-    program.version(version);
+    console.log('[unvus code-genie] RUN.');
 
     const opt = process.argv[2];
-    console.log("OPTIONS : " + process.argv[2]); // Options
+    console.log("OPTIONS : " + process.argv[2]); // Options1
 
     if (opt !== 'init' || opt === '' || opt === null) {
         console.log("Error: not required Command");
@@ -21,25 +16,101 @@ const program = new Command();
     }
 
     const opt2 = process.argv?.[3];
-    console.log("OPTIONS : " + opt2); // Options
+    if(opt2 !== null || opt2 !== undefined) {console.log("OPTIONS2 : " + opt2); // Options2}
 
-    // current directory path get
-    const currentDir = process.cwd();
+        // current directory path get
+        const currentDir = process.cwd();
 
-    // genie-config directory path generate.
-    const genieConfDir = path.join(currentDir, 'genie-config');
+        // genie-config directory path generate.
+        const genieConfDir = path.join(currentDir, 'genie-config');
 
-    // Check if directory already exists
-    if (!fs.existsSync(genieConfDir)) {
-        // If genie-config directory is not exist make directory
-        fs.mkdirSync(genieConfDir);
-        console.log('make "genie-config" Directory!!');
+        // Check if directory already exists
+        if (!fs.existsSync(genieConfDir)) {
+            // If genie-config directory is not exist make directory
+            fs.mkdirSync(genieConfDir);
+            console.log('make "genie-config" Directory!!');
+
+            const genieConfCode = null;
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////    SIMPLE CONF GEN     ///////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+            if(opt2 === 'simple') {
+                genieConfCode = `
+/**
+ * genie.conf-simple-sample.js
+ * @param {*} userCfg 코드지니 화면에서 사용자가 설정한 내용이 담겨져 있습니다.
+ * @param {*} path node:path 모듈입니다.
+ * @param {*} _ lodash 입니다.
+ * @param {*} crypto node:crypto 모듈입니다.
+ * @returns baseConfig, globalEngines, moduleCallback 세가지를 반환합니다.
+ */
+module.exports.getConfig = (userCfg, path, _, crypto) => {
+  // =============================================================================== 1. baseConfig
+
+    const baseConfig = {
+        builderName: 'Unvus simple Project Builder',
+        gitName: 'simple',
+        name: 'simple-builder',
+        id: 'simple-builder',
+        basePackage: 'com.unvus.simple',
+        catalogSchema: 'testDb',
+        tablePrefix: 'nv_',
+        modules: [],
+        dataSourceNames: [],
+        includeRedis: true
+    };
+
+    const engineRootCopy = {
+        engine: 'CopyAndReplaceContent',
+        path : '',
+        recursive: true, // recursive 가 false 이면, 디렉토리는 제외
+        excludes: [],
+        replaces: [
+            {from: 'com.unvus.simple', to: userCfg.basePackage},
+            {from: 'simple', to: userCfg.id},
+            {from: 'Simple', to: userCfg.idName},
+        ],
+        renames: [
+            {from: 'simple', to: userCfg.id},
+            {from: 'Simple', to: userCfg.idName},
+        ]
+    };
+
+    /**
+     * Java 패키지를 이동하는 엔진 설정입니다.
+     */
+    const moveBase = {
+        engine: 'MoveJavaPackage',
+        javaBase: path.join('src', 'main', 'java'),
+        fromPackage: baseConfig.basePackage + '.' + 'builder',
+        toPackage: userCfg.basePackage + '.' + 'builder'
+    };
+
+    /**
+     * Java Test 패키지를 이동하는 엔진 설정입니다.
+     */
+    const moveTestBase = {
+        engine: 'MoveJavaPackage',
+        javaBase: path.join('src', 'test', 'java'),
+        fromPackage: baseConfig.basePackage + '.' + 'builder',
+        toPackage: userCfg.basePackage + '.' + 'builder'
+    };
+
+    const globalEngines = [engineRootCopy, moveBase, moveTestBase];
+
+    return {
+        baseConfig, globalEngines
+    }
+}
+           `
+            }else {
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////     CONF GEN     /////////////////////////////////////////////
+//////////////////////////////////////     FULL CONF GEN     ////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-        // genie.conf.js file code write
-        const genieConfCode = `
+                // genie.conf.js file code write
+                genieConfCode = `
 /**
  * genie.conf-full-sample.js
  * @param {*} userCfg 코드지니 화면에서 사용자가 설정한 내용이 담겨져 있습니다.
@@ -218,36 +289,37 @@ module.exports.getConfig = (userCfg, path, _, crypto) => {
   }
 }
 `;
+            } //else
 
-        // genie.conf.js make file path
-        const genieConfFile = path.join(genieConfDir, 'genie.conf.js');
+            // genie.conf.js make file path
+            const genieConfFile = path.join(genieConfDir, 'genie.conf.js');
 
-        // genie.conf.js File Generated
-        fs.writeFileSync(genieConfFile, genieConfCode);
-        console.log('make "genie.conf.js" file!!');
+            // genie.conf.js File Generated
+            fs.writeFileSync(genieConfFile, genieConfCode);
+            console.log('make "genie.conf.js" file!!');
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////      SQL GEN     /////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // 1. SQL Dir GEN
-        const sqlDirPath = path.join(genieConfDir, 'genie-sql');
-        fs.mkdirSync(sqlDirPath);
+            // 1. SQL Dir GEN
+            const sqlDirPath = path.join(currentDir, 'genie-sql');
+            fs.mkdirSync(sqlDirPath);
 
             const mysqlDirPath = path.join(sqlDirPath, 'mysql');
             const oracleDirPath = path.join(sqlDirPath, 'oracle');
             const postgreDirPath = path.join(sqlDirPath, 'postgresql');
             const sqlServerDirPath = path.join(sqlDirPath, 'sqlserver');
 
-        fs.mkdirSync(mysqlDirPath);
-        fs.mkdirSync(oracleDirPath);
-        fs.mkdirSync(postgreDirPath);
-        fs.mkdirSync(sqlServerDirPath);
+            fs.mkdirSync(mysqlDirPath);
+            fs.mkdirSync(oracleDirPath);
+            fs.mkdirSync(postgreDirPath);
+            fs.mkdirSync(sqlServerDirPath);
 
 
-        // 2. SQL Test Table init Gen
-        const mysqlQuery = `
+            // 2. SQL Test Table init Gen
+            const mysqlQuery = `
             CREATE TABLE nv_test_table (
                 id INT NOT NULL AUTO_INCREMENT,
                 name VARCHAR(100) NOT NULL,
@@ -255,7 +327,7 @@ module.exports.getConfig = (userCfg, path, _, crypto) => {
             );
         `;
 
-        const oracleQuery = `
+            const oracleQuery = `
             CREATE TABLE nv_test_table (
                 id NUMBER NOT NULL,
                 name VARCHAR2(100) NOT NULL,
@@ -263,38 +335,38 @@ module.exports.getConfig = (userCfg, path, _, crypto) => {
             );
         `;
 
-        const postgreQuery = `
+            const postgreQuery = `
             CREATE TABLE nv_test_table (
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(100) NOT NULL
             );
         `;
 
-        const sqlServerQuery = `
+            const sqlServerQuery = `
             CREATE TABLE nv_test_table (
                 id INT PRIMARY KEY,
                 name NVARCHAR(100) NOT NULL
             );
         `;
 
-        // 3. SQL File Generate
-        const mysqlFilePath = path.join(mysqlDirPath, '01.sample.sql');
-        const oracleFilePath = path.join(oracleDirPath, '01.sample.sql');
-        const postgreFilePath = path.join(postgreDirPath, '01.sample.sql');
-        const sqlServerFilePath = path.join(sqlServerDirPath, '01.sample.sql');
+            // 3. SQL File Generate
+            const mysqlFilePath = path.join(mysqlDirPath, '01.sample.sql');
+            const oracleFilePath = path.join(oracleDirPath, '01.sample.sql');
+            const postgreFilePath = path.join(postgreDirPath, '01.sample.sql');
+            const sqlServerFilePath = path.join(sqlServerDirPath, '01.sample.sql');
 
-        // 4. SQL File Write
-        fs.writeFileSync(mysqlFilePath, mysqlQuery);
-        fs.writeFileSync(oracleFilePath, oracleQuery);
-        fs.writeFileSync(postgreFilePath, postgreQuery);
-        fs.writeFileSync(sqlServerFilePath, sqlServerQuery);
+            // 4. SQL File Write
+            fs.writeFileSync(mysqlFilePath, mysqlQuery);
+            fs.writeFileSync(oracleFilePath, oracleQuery);
+            fs.writeFileSync(postgreFilePath, postgreQuery);
+            fs.writeFileSync(sqlServerFilePath, sqlServerQuery);
 
-        console.log('make "genie-sql" Directory and Sample Files!');
+            console.log('make "genie-sql" Directory and Sample Files!');
 
-    } else {
-        console.log('genie-config directory already exists.');
-        return;
-    }
+        } else {
+            console.log('genie-config Directory Already Exists.');
+            return;
+        }
 
-    console.log("Success: Directory and make File Success!!");
-})();
+        console.log("Success: Make Directories and Files!!");
+    })();
